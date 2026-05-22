@@ -1,0 +1,6 @@
+/// <reference types="expo/types" />
+
+declare module '*.module.css' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
