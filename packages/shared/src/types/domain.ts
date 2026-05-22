@@ -52,8 +52,11 @@ export interface Product {
   isPopular?: boolean;
   popularityScore?: number;
   unit: ProductUnit;
+  /** Минимальное количество. Для точных дробей (например, 0.1 кг) используйте строковый формат, чтобы избежать ошибок float. */
   minQuantity: number;
+  /** Шаг заказа. Для точных дробей (например, 0.1 кг) используйте строковый формат, чтобы избежать ошибок float. */
   orderStep: number;
+  /** Остаток. Для точных дробей используйте строковый формат. */
   stockQuantity: number;
   storageConditions?: string;
   status: ProductStatus;

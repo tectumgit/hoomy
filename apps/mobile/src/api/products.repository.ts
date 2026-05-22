@@ -10,32 +10,26 @@ export interface ProductsRepository {
 
 export class MockProductsRepository implements ProductsRepository {
   async listProductsBySupplier(supplierId: string): Promise<Product[]> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    // Можно логировать или управлять через параметры
     return mockProducts.filter((p) => p.supplierId === supplierId);
   }
 
   async getProduct(id: string): Promise<Product> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
     const product = mockProducts.find((p) => p.id === id);
     if (!product) {
       throw new Error(`Product with ID ${id} not found`);
     }
-    return product;
+    return { ...product };
   }
 
   async listPopularProducts(): Promise<Product[]> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
     // Return first 5 products for mock popular list
     return mockProducts.slice(0, 5);
   }
 
   async listAllProducts(): Promise<Product[]> {
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    return mockProducts;
+    return [...mockProducts];
   }
 }
 
 export const productsRepository = new MockProductsRepository();
-
-
-
