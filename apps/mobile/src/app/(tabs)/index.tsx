@@ -28,52 +28,52 @@ export default function HomeScreen() {
             <ActivityIndicator size="large" color="#FF6500" />
           </View>
         ) : (
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-            
+          <>
             <Header />
-
-            <SectionTitle 
-              title="Популярное у поставщиков" 
-              actionText="Смотреть все" 
-              onActionPress={() => router.push('/discounts')} 
-            />
-            <FlatList
-              data={popular as MockProduct[]}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <ProductCard product={item} />}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.horizontalList}
-            />
-
-            <SectionTitle 
-              title="Категории" 
-              actionText="Все категории" 
-              onActionPress={() => router.push('/(tabs)/categories')} 
-            />
-            <FlatList
-              data={mockCategories}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <CategoryItem category={item} />}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.horizontalList}
-            />
-
-            <Banners />
-
-            <SectionTitle title="Поставщики и лучшие предложения" />
-            {suppliers.map((supplier) => (
-              <SupplierSection
-                key={supplier.id}
-                supplier={supplier}
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+              <SectionTitle 
+                title="Популярное у поставщиков" 
+                actionText="Смотреть все" 
+                onActionPress={() => router.push('/discounts')} 
               />
-            ))}
+              <FlatList
+                data={popular as MockProduct[]}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => <ProductCard product={item} />}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.horizontalList}
+              />
 
-            {/* Отступ снизу для таб-бара */}
-            <View style={{ height: 40 }} />
+              <SectionTitle 
+                title="Категории" 
+                actionText="Все категории" 
+                onActionPress={() => router.push('/(tabs)/categories')} 
+              />
+              <FlatList
+                data={mockCategories}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => <CategoryItem category={item} />}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.horizontalList}
+              />
 
-          </ScrollView>
+              <Banners />
+
+              <SectionTitle title="Поставщики и лучшие предложения" />
+              {suppliers.map((supplier) => (
+                <SupplierSection
+                  key={supplier.id}
+                  supplier={supplier}
+                />
+              ))}
+
+              {/* Отступ снизу для таб-бара */}
+              <View style={{ height: 40 }} />
+
+            </ScrollView>
+          </>
         )}
       </SafeAreaView>
     </ThemedView>
