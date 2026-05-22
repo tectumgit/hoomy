@@ -572,6 +572,16 @@ createdAt
 updatedAt
 ```
 
+### search_history
+
+```text
+id
+userId
+query
+createdAt
+```
+
+
 ## Критические бизнес-правила
 
 ### Количество товара

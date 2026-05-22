@@ -271,6 +271,13 @@ POST /api/notifications/read-all
 GET  /api/chats
 GET  /api/chats/:id/messages
 POST /api/chats/:id/messages
+
+// Умный поиск (Smart Search)
+GET  /api/search
+GET  /api/search/suggest
+GET  /api/search/history
+POST /api/search/history
+DELETE /api/search/history
 ```
 
 ### Спецификация API уведомлений и чатов
@@ -360,6 +367,61 @@ POST /api/chats/:id/messages
       "createdAt": "2026-05-20T11:15:00Z"
     }
     ```
+
+#### 3. Умный поиск (Smart Search)
+
+* **`GET /api/search`**
+  Полнотекстовый поиск по товарам, поставщикам и категориям.
+  * *Параметры запроса (Query Params):* `q` (поисковый запрос).
+  * *Ответ (200 OK):*
+    ```json
+    {
+      "categories": [],
+      "suppliers": [],
+      "products": []
+    }
+    ```
+
+* **`GET /api/search/suggest`**
+  Поисковые подсказки по мере ввода.
+  * *Параметры запроса (Query Params):* `q`.
+  * *Ответ (200 OK):*
+    ```json
+    [
+      "молоко коровье",
+      "молоко козье"
+    ]
+    ```
+
+* **`GET /api/search/history`**
+  Получение истории поиска текущего авторизованного пользователя.
+  * *Ответ (200 OK):*
+    ```json
+    [
+      { "id": "hist_1", "query": "молоко", "createdAt": "2026-05-20T11:15:00Z" }
+    ]
+    ```
+
+* **`POST /api/search/history`**
+  Сохранение поискового запроса в историю.
+  * *Тело запроса (Request Body):*
+    ```json
+    {
+      "query": "молоко"
+    }
+    ```
+  * *Ответ (200 OK):*
+    ```json
+    { "success": true }
+    ```
+
+* **`DELETE /api/search/history`**
+  Очистка истории поиска.
+  * *Ответ (200 OK):*
+    ```json
+    { "success": true }
+    ```
+
 
 Обязательное правило: все входные данные валидируются Zod-схемами из `packages/shared`.
 

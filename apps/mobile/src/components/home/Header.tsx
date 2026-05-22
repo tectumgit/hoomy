@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { AddressModal } from './AddressModal';
@@ -70,17 +70,17 @@ export function Header() {
         </View>
 
 
-        <View style={styles.searchContainer}>
+        <TouchableOpacity 
+          style={styles.searchContainer}
+          activeOpacity={0.8}
+          onPress={() => router.push('/search')}
+        >
           <Feather name="search" size={20} color="#999" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Поиск товаров, поставщиков и категорий"
-            placeholderTextColor="#999"
-          />
-          <TouchableOpacity>
-            <Feather name="maximize" size={20} color="#FF6500" />
-          </TouchableOpacity>
-        </View>
+          <ThemedText style={styles.searchPlaceholder}>
+            Поиск товаров, поставщиков и категорий
+          </ThemedText>
+          <Feather name="maximize" size={20} color="#FF6500" />
+        </TouchableOpacity>
       </View>
 
       <AddressModal 
@@ -161,9 +161,9 @@ const styles = StyleSheet.create({
   searchIcon: {
     marginRight: 10,
   },
-  searchInput: {
+  searchPlaceholder: {
     flex: 1,
     fontSize: 15,
-    color: '#333',
+    color: '#999',
   },
 });

@@ -1,6 +1,7 @@
 import { Feather } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
-import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CatalogCard } from '@/components/category/CatalogCard';
@@ -12,15 +13,17 @@ export default function CategoriesIndexScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       {/* Шапка Поиска */}
       <View style={styles.header}>
-        <View style={styles.searchContainer}>
+        <TouchableOpacity 
+          style={styles.searchContainer}
+          activeOpacity={0.8}
+          onPress={() => router.push('/search')}
+        >
           <Feather name="search" size={20} color="#999" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Поиск по товарам"
-            placeholderTextColor="#999"
-          />
+          <ThemedText style={styles.searchPlaceholder}>
+            Поиск по товарам, поставщикам...
+          </ThemedText>
           <Feather name="maximize" size={20} color="#666" style={styles.scanIcon} />
-        </View>
+        </TouchableOpacity>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
@@ -69,10 +72,10 @@ const styles = StyleSheet.create({
   searchIcon: {
     marginRight: 10,
   },
-  searchInput: {
+  searchPlaceholder: {
     flex: 1,
     fontSize: 15,
-    color: '#333',
+    color: '#999',
   },
   scanIcon: {
     marginLeft: 10,

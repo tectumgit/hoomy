@@ -22,6 +22,7 @@ export default function RootLayout() {
               <Stack.Screen name="b2b/register" options={{ presentation: 'modal', gestureEnabled: true, animation: 'slide_from_bottom' }} />
               <Stack.Screen name="weekly-purchase/index" />
               <Stack.Screen name="discounts/index" />
+              <Stack.Screen name="search" options={{ animation: 'fade' }} />
             </Stack>
           </InboxProvider>
         </CartProvider>
