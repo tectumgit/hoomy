@@ -15,7 +15,7 @@ export default function OrderDetailsScreen() {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+          <TouchableOpacity onPress={() => router.replace('/(tabs)/orders')} style={styles.backBtn}>
             <Feather name="arrow-left" size={24} color="#333" />
           </TouchableOpacity>
           <ThemedText style={styles.headerTitle}>Заказ не найден</ThemedText>
@@ -120,7 +120,7 @@ export default function OrderDetailsScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+        <TouchableOpacity onPress={() => router.replace('/(tabs)/orders')} style={styles.backBtn}>
           <Feather name="arrow-left" size={24} color="#333" />
         </TouchableOpacity>
         <ThemedText style={styles.headerTitle}>Заказ №{order.number}</ThemedText>
